@@ -57,12 +57,12 @@ jobs:
           # echo "$TAGS
           # null is set if there is an error reading latest tag
           echo "Latest tag: ${TAGS}"
-          echo "LATEST_CONTAINER=${TAGS}" >> $GITHUB_OUTPUT
+          echo "TAG=${TAGS}" >> $GITHUB_OUTPUT
 
       - name: Check if build is needed
         id: check_build
         run: |
-          if [ "${{ steps.seanime_release.outputs.LATEST_RELEASE }}" != ${{ steps.get_tag.outputs.LATEST_CONTAINER }} ]; then
+          if [ "${{ steps.seanime_release.outputs.LATEST_RELEASE }}" != ${{ steps.get_tag.outputs.TAG}} ]; then
             echo "BUILD_NEEDED=true" >> $GITHUB_OUTPUT
             echo "New version detected. Build needed."
           else
