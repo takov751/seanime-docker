@@ -53,8 +53,11 @@ jobs:
           PACKAGE_NAME: seanime-docker" # Replace with your package name (usually your image name)
         run: |
           # Query package versions from GitHub API
-          TAGS=$(curl -s -H "Authorization: Bearer $GH_TOKEN" "https://api.github.com/users/$OWNER/packages/container/$REPO/versions"| jq -r '.[].metadata.container.tags[]' || echo "null" |grep "v[0-9]" |sort -V |tail -n1)
+          TAGS=$(curl -s -H "Authorization: Bearer $GH_TOKEN" "https://api.github.com/users/$OWNER/packages/container/$REPO/versions"| jq -r '.[].metadata.container.tags[]'|sort -V |grep -o -E '^v([1-9]?[0-9])(\.([1-9]?[0-9])){2}$'|tail -n1)
           # echo "$TAGS
+          if [[ -z "$TAGS" || "$TAGS" == "null" ]]; then
+          echo "No valid version tag found."
+          fi
           # null is set if there is an error reading latest tag
           echo "Latest tag: ${TAGS}"
           echo "TAG=${TAGS}" >> $GITHUB_OUTPUT
