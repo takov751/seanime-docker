@@ -56,7 +56,7 @@ jobs:
           TAGS=$(curl -s -H "Authorization: Bearer $GH_TOKEN" "https://api.github.com/users/$OWNER/packages/container/$REPO/versions")
           # echo "$TAGS"
           # null is set if there is an error reading latest tag
-          LATEST_TAG=$(echo "$TAGS" | jq -r '.[].metadata.container.tags[]' || echo "null" |sort -V |tail -n1)
+          LATEST_TAG=$(echo "$TAGS" | jq -r '.[].metadata.container.tags[]' || echo "null" |grep "v[0-9]" |sort -V |tail -n1)
           echo "Latest tag: $LATEST_TAG"
           echo "LATEST_CONTAINER=$LATEST_TAG" >> $GITHUB_OUTPUT
 
