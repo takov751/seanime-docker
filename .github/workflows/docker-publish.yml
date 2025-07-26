@@ -73,6 +73,7 @@ jobs:
             echo "No new version. Skipping build."
           fi
       - name: Set up Docker Buildx
+        if: steps.check_build.outputs.BUILD_NEEDED == 'true'
         uses: docker/setup-buildx-action@v3
       # Login against a Docker registry except on PR
       # https://github.com/docker/login-action
