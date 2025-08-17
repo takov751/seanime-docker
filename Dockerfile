@@ -2,7 +2,7 @@ FROM alpine:latest
 
 RUN apk add --no-cache \
    jellyfin-ffmpeg
-
+ENV PATH="$PATH:/usr/lib/jellyfin-ffmpeg"
 RUN mkdir /downloads && mkdir /app
 WORKDIR /app/
 
