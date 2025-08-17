@@ -1,4 +1,4 @@
-FROM debian:trixie-slim AS base
+FROM debian:bookworm-slim AS base
 
 # Install necessary packages
 RUN apt-get update && \
