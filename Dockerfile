@@ -40,7 +40,7 @@ RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o seanime -trimpath -ldflags
 FROM debian:trixie-slim AS final
 COPY --from=downloader /tmp/jellyfin-ffmpeg.deb /tmp/
 RUN apt-get update && \
-    apt-get install -y --no-install-recommends /tmp/jellyfin-ffmpeg.deb && \
+    apt-get install -y --no-install-recommends ca-certificates /tmp/jellyfin-ffmpeg.deb && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* && rm -rf /tmp/jellyfin-ffmpeg.deb
 ENV PATH="/usr/lib/jellyfin-ffmpeg/:$PATH"
