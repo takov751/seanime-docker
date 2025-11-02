@@ -24,7 +24,7 @@ COPY --from=downloader /tmp/seanime/seanime-web /tmp/build
 
 WORKDIR /tmp/build
 
-RUN npm ci
+RUN npm install && npm ci
 RUN npm run build
 
 FROM golang:latest AS go-builder
