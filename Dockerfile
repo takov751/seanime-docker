@@ -1,3 +1,5 @@
+ARG SEANIME_VERSION
+
 FROM debian:trixie-slim AS downloader
 
 # Install necessary packages
