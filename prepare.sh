@@ -9,7 +9,6 @@ LINK=$(curl -s https://api.github.com/repos/jellyfin/jellyfin-ffmpeg/releases/la
 curl -L --output jellyfin-ffmpeg.deb ${LINK}
 
 #Download latest seanime
-<<<<<<< HEAD
 VERSION_NO_V=$(echo ${SEANIME_VERSION} | sed 's/v//')
 SURL=https://github.com/5rahim/seanime/releases/download/${SEANIME_VERSION}/seanime-${VERSION_NO_V}_Linux_x86_64.tar.gz
 echo $SURL
@@ -23,6 +22,3 @@ git clone https://github.com/5rahim/seanime.git
 # Checkout the specified release tag
 cd seanime
 git checkout $SEANIME_VERSION
-
-
->>>>>>> parent of d3df853 (Update prepare.sh)
