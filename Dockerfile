@@ -10,7 +10,7 @@ RUN apt-get update && \
         tar \
         jq && \
     apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
+    rm -rf /var/lib/apt/lists/* && echo ee && echo $SEANIME_VERSION
 
 WORKDIR /tmp
 COPY ./prepare.sh /tmp/prepare.sh
