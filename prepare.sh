@@ -9,10 +9,7 @@ LINK=$(curl -s https://api.github.com/repos/jellyfin/jellyfin-ffmpeg/releases/la
 curl -L --output jellyfin-ffmpeg.deb ${LINK}
 
 #Download latest seanime
-git clone https://github.com/5rahim/seanime.git
-
-# Checkout the specified release tag
-cd seanime
-git checkout $SEANIME_VERSION
-
-
+VERSION_NO_V=$(echo ${SEANIME_VERSION} | sed 's/v//')
+curl -L --output seanime.tar.gz "https://github.com/5rahim/seanime/releases/download/${LATEST_VERSION}/seanime-${VERSION_NO_V}_Linux_x86_64.tar.gz"
+tar -xzf seanime.tar.gz
+chmod +x seanime
